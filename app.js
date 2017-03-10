@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const SpotifyStrategy = require('passport-spotify').Strategy;
 const mongoose = require('mongoose');
 mongoose.connect( 'mongodb://localhost/capstone-starter' );
 
@@ -39,6 +40,17 @@ const User = require('./models/user');
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+passport.use(new SpotifyStrategy({
+    clientID: process.env.SPOTIFY_CLIENT_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    callbackURL: "http://localhost:8888/auth/spotify/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ spotifyId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
 
 app.use('/api/auth', auth);
 
