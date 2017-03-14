@@ -35,8 +35,8 @@ class App extends React.Component {
         });
         links.push(
           <li key="logout">
-            <a 
-              href="#" 
+            <a
+              href="#"
               onClick={ e => {
                 this.props.dispatch(logout(this.props.router))
               }}
@@ -75,7 +75,9 @@ class App extends React.Component {
           </div>
         </nav>
         <Flash />
-        {this.props.children}
+        <div className="container">
+          {this.props.children}
+        </div>
       </div>
     );
   }
