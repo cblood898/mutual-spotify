@@ -5,6 +5,7 @@ import App from './containers/App';
 import AuthenticatedRoutes from './components/AuthenticatedRoutes';
 import Auth from './components/Auth';
 import NotFound from './components/NotFound';
+import Playlists from './components/Playlists';
 
 const AdminAccess = UserAuthWrapper({
   authSelector: state => state.user,
@@ -18,6 +19,7 @@ const AdminRoutes = AdminAccess( (props) => props.children )
 export default (
  <Route>
    <Route path="/" component={App}>
+     <IndexRoute component={Playlists} />
      <Route path="signup" component={Auth} title="Sign Up" />
      <Route path="signin" component={Auth} title="Sign In" />
      <Route component={AuthenticatedRoutes}>
