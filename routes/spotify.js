@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../models/user');
 const querystring = require('querystring');
 const request = require('request');
 const cookieParser = require('cookie-parser');
@@ -85,14 +86,28 @@ router.get('/callback', (req, res) => {
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
           // console.log(body);
-          let user = req.user;
-          user.spotify_auth = {
-            access_token,
-            refresh_token
+          // let user = req.user;
+          // user.spotify_auth = {
+          //   access_token,
+          //   refresh_token
+          // };
+          // // user.image = body.images.url;
+          // user.save;
+          // console.log(user);
+
+          const query = {'_id': req.user._id};
+          const update = {
+            spotify_auth: {
+              access_token,
+              refresh_token
+            },
+            image: body.images[0].url,
           };
-          // user.image = body.images.url;
-          user.save;
-          console.log(user);
+          User.findOneAndUpdate(query, update, {upsert:true}, (err, user) => {
+            if (err)
+              console.log('error updating spotify');
+
+          });
         });
 
         // we can also pass the token to the browser to make requests from there
