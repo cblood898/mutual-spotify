@@ -9,7 +9,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const mongoose = require('mongoose');
-mongoose.connect( 'mongodb://localhost/capstone-starter' );
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/mutual-spotify';
+mongoose.connect(mongoURI);
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
