@@ -2,7 +2,7 @@ import { setFlash } from './flash';
 
 export const getUserPlaylists = (user_id) => {
   // TODO: store access token somewhere
-  const accessToken = 'BQAO_tqwC5Bd0OiSUseb4LCKl-VPczyqAsFkHHYtzN4klMAkyHzVNOy9LlXHa1hDkA1SitetpTvwJIZzg85Fdgwbmt0GuQab2uPXXIOypXMx4RtDvgJH9-gzKWLgWtyTQauKASyh3zNhb2aI2dR8yesKMxjxsg';
+  const accessToken = 'BQBVAL4XbJXK92kdHcbrtZEJuuUYCgCgIwnYvItsiPMAksnrE5EwWPznSy2NrZdv1FLWeBC5nobfqrExrqbuPVXGXCowScTIiQ0PcoUZV2WmJ37p3q1qiJAkqL5HiShYEEXKepuValWNAr-WsrMz0uggbWKp7w';
   return (dispatch) => {
     $.ajax({
       url: `https://api.spotify.com/v1/users/${user_id}/playlists`,

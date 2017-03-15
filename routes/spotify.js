@@ -8,18 +8,18 @@ const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 
 const stateKey = 'spotify_auth_state';
-const redirect_uri = 'http://localhost:3000/spotify/callback';
+const redirect_uri = process.env.NODE_ENV === 'production' ? 'http://jamify-capstone.herokuapp.com/spotify/callback' : 'http://localhost:3000/spotify/callback';
 
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
  * @return {string} The generated string
  */
-var generateRandomString = function(length) {
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+let generateRandomString = (length) => {
+  let text = '';
+  let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-  for (var i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
@@ -84,7 +84,15 @@ router.get('/callback', (req, res) => {
 
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
-          console.log(body);
+          // console.log(body);
+          let user = req.user;
+          user.spotify_auth = {
+            access_token,
+            refresh_token
+          };
+          // user.image = body.images.url;
+          user.save;
+          console.log(user);
         });
 
         // we can also pass the token to the browser to make requests from there
@@ -93,6 +101,7 @@ router.get('/callback', (req, res) => {
             access_token: access_token,
             refresh_token: refresh_token
           }));
+
       } else {
         res.redirect('/#' +
           querystring.stringify({
