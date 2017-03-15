@@ -13,6 +13,8 @@ class Playlists extends React.Component {
       let { id, name } = playlist;
       return (<li key={id} className="collection-item">{name}</li>)
     });
+    const spotify_auth = this.props.spotify_auth || {};
+    const access_token = spotify_auth.access_token || '';
     return (
       <div>
         <a className="btn" href="/spotify/login">Link Spotify</a>
@@ -20,7 +22,7 @@ class Playlists extends React.Component {
           ref={ n => form = n }
           onSubmit={ e => {
             e.preventDefault();
-            this.props.dispatch(getUserPlaylists(username.value));
+            this.props.dispatch(getUserPlaylists(username.value, access_token));
             form.reset();
           }}
         >
@@ -38,7 +40,7 @@ class Playlists extends React.Component {
 };
 
 const mapStateToProps = (state) => {
- return { spotify: state.spotify }
+ return { spotify: state.spotify, spotify_auth: state.user.spotify_auth }
 }
 
 export default connect(mapStateToProps)(Playlists);
