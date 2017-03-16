@@ -47,17 +47,25 @@ router.get('/user', isAuthenticated, (req,res) => {
 });
 
 router.post('/add_tracks', (req,res) => {
+  console.log(req.body)
   const query = {'_id': req.user._id};
   const update = {
-    tracks: {
-      [req.user._id]: req.body
+    [req.body.user_id]: {
+      playlist_id: req.body.playlist_id,
+      tracks: req.body.tracks
     }
   }
-  User.findOneAndUpdate(query, update, {upsert:true}, (err, tracks) => {
-    if (err)
-      console.log('error adding tracks');
-
-  });
+  console.log(update);
+  User.findOneAndUpdate(
+    query,
+    {$push: { tracks: update }},
+    // update,
+    {safe: true, upsert: true},
+    (err, tracks) => {
+      if (err)
+        console.log('error adding tracks');
+    }
+  );
 })
 
 router.delete('/sign_out', (req, res) => {

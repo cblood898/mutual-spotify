@@ -8,7 +8,7 @@ let User = new Schema({
   role: { type: String, default: 'user' },
   image: { type: String },
   spotify_auth: { type: Object },
-  tracks: { type: Object }
+  playlists: { type: Array }
 });
 
 User.plugin(passportLocalMongoose);

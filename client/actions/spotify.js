@@ -9,6 +9,7 @@ export const getUserPlaylists = (user_id, access_token) => {
         'Authorization': 'Bearer ' + access_token
       }
     }).done( playlists => {
+      console.warn(playlists);
       dispatch({ type: 'PLAYLISTS', playlists })
     });
   }
@@ -26,11 +27,18 @@ export const getPlaylistTracks = (user_id, playlist_id, access_token) => {
       const tracks = spotifyTracks.items.map(item => {
         return { id: item.track.id, name: item.track.name }
       });
+      console.warn(tracks);
+      const data = {
+        user_id,
+        playlist_id,
+        tracks
+      }
       $.ajax({
         url: '/api/auth/add_tracks',
         type: 'POST',
-        data: { tracks }
+        data: data,
       })
+      console.log("ADDEDDDDDD");
       dispatch({ type: 'TRACKS', tracks })
     });
   }
