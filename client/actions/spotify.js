@@ -1,7 +1,6 @@
 import { setFlash } from './flash';
 
 export const getUserPlaylists = (user_id, access_token) => {
-  // TODO: store access token somewhere
   return (dispatch) => {
     $.ajax({
       url: `https://api.spotify.com/v1/users/${user_id}/playlists`,
@@ -10,8 +9,29 @@ export const getUserPlaylists = (user_id, access_token) => {
         'Authorization': 'Bearer ' + access_token
       }
     }).done( playlists => {
-      // console.warn(playlists);
-      dispatch({ type: 'PLAYLISTS', user_id, playlists: playlists })
+      dispatch({ type: 'PLAYLISTS', playlists })
+    });
+  }
+}
+
+export const getPlaylistTracks = (user_id, playlist_id, access_token) => {
+  return (dispatch) => {
+    $.ajax({
+      url: `https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`,
+      type: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + access_token
+      }
+    }).done( spotifyTracks => {
+      const tracks = spotifyTracks.items.map(item => {
+        return { id: item.track.id, name: item.track.name }
+      });
+      $.ajax({
+        url: '/api/auth/add_tracks',
+        type: 'POST',
+        data: { tracks }
+      })
+      dispatch({ type: 'TRACKS', tracks })
     });
   }
 }

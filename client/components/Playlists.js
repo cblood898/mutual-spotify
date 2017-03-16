@@ -1,45 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Playlist from './Playlist';
-import { getUserPlaylists } from '../actions/spotify';
+import { getUserPlaylists, getPlaylistTracks } from '../actions/spotify';
 
 class Playlists extends React.Component {
   render() {
+    const spotifyPlaylists = this.props.spotify.playlists || [];
     const user = this.props.user || {};
-    if (user._id && !this.props.spotify.items) {
-      console.log(user.spotify_auth.username);
-      const spotify_auth = user.spotify_auth || {};
-      const access_token = spotify_auth.access_token || '';
-      this.props.dispatch(getUserPlaylists(user.spotify_auth.username, access_token, this.dispatch));
+    const spotify_auth = user.spotify_auth || {};
+    const access_token = spotify_auth.access_token || '';
+    if (spotify_auth.access_token && !spotifyPlaylists.items) {
+      this.props.dispatch(getUserPlaylists(user.spotify_auth.username, access_token));
     }
 
-    let username;
-    let form;
-
-    const playlistItems = this.props.spotify.items || [];
+    const playlistItems = spotifyPlaylists.items || [];
     const playlists = playlistItems.map(playlist => {
       let { id, name } = playlist;
-      return (<li key={id} className="collection-item">{name}</li>)
+      return (
+        <a
+          key={id}
+          className="collection-item"
+          onClick={() => this.props.dispatch(getPlaylistTracks(user.spotify_auth.username, id, access_token))}
+        >{name}</a>)
     });
 
     return (
       <div>
         <a className="btn" href="/spotify/login">Link Spotify</a>
-        {/* <form
-          ref={ n => form = n }
-          onSubmit={ e => {
-            e.preventDefault();
-            this.props.dispatch(getUserPlaylists(username.value, access_token));
-            form.reset();
-          }}
-        >
-          <input type="text" ref={ n => username = n } />
-          <button className="btn">Get Playlists</button>
-        </form> */}
         <div className="cols s12 m6">
-          <ul className="collection">
+          <div className="collection">
             { playlists }
-          </ul>
+          </div>
         </div>
       </div>
     );

@@ -43,8 +43,22 @@ router.post('/signin', (req, res) => {
 });
 
 router.get('/user', isAuthenticated, (req,res) => {
-  return res.json(req.user)
+  return res.json(req.user);
 });
+
+router.post('/add_tracks', (req,res) => {
+  const query = {'_id': req.user._id};
+  const update = {
+    tracks: {
+      [req.user._id]: req.body
+    }
+  }
+  User.findOneAndUpdate(query, update, {upsert:true}, (err, tracks) => {
+    if (err)
+      console.log('error adding tracks');
+
+  });
+})
 
 router.delete('/sign_out', (req, res) => {
   req.logout();
