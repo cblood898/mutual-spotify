@@ -98,6 +98,7 @@ router.get('/callback', (req, res) => {
           const query = {'_id': req.user._id};
           const update = {
             spotify_auth: {
+              username: body.id,
               access_token,
               refresh_token
             },

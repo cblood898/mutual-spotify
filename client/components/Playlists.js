@@ -5,6 +5,14 @@ import { getUserPlaylists } from '../actions/spotify';
 
 class Playlists extends React.Component {
   render() {
+    const user = this.props.user || {};
+    if (user._id && !this.props.spotify.items) {
+      console.log(user.spotify_auth.username);
+      const spotify_auth = user.spotify_auth || {};
+      const access_token = spotify_auth.access_token || '';
+      this.props.dispatch(getUserPlaylists(user.spotify_auth.username, access_token, this.dispatch));
+    }
+
     let username;
     let form;
 
@@ -13,12 +21,11 @@ class Playlists extends React.Component {
       let { id, name } = playlist;
       return (<li key={id} className="collection-item">{name}</li>)
     });
-    const spotify_auth = this.props.spotify_auth || {};
-    const access_token = spotify_auth.access_token || '';
+
     return (
       <div>
         <a className="btn" href="/spotify/login">Link Spotify</a>
-        <form
+        {/* <form
           ref={ n => form = n }
           onSubmit={ e => {
             e.preventDefault();
@@ -28,7 +35,7 @@ class Playlists extends React.Component {
         >
           <input type="text" ref={ n => username = n } />
           <button className="btn">Get Playlists</button>
-        </form>
+        </form> */}
         <div className="cols s12 m6">
           <ul className="collection">
             { playlists }
@@ -40,7 +47,7 @@ class Playlists extends React.Component {
 };
 
 const mapStateToProps = (state) => {
- return { spotify: state.spotify, spotify_auth: state.user.spotify_auth }
+ return { spotify: state.spotify, user: state.user }
 }
 
 export default connect(mapStateToProps)(Playlists);
