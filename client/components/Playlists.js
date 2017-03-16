@@ -14,7 +14,11 @@ class Playlists extends React.Component {
     }
 
     const playlistItems = spotifyPlaylists.items || [];
-    const playlists = playlistItems.map(playlist => {
+    const playlists = playlistItems
+    .filter(item => {
+      return item.owner.id === user.spotify_auth.username
+    })
+    .map(playlist => {
       let { id, name } = playlist;
       return (
         <a
