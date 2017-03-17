@@ -9,7 +9,6 @@ export const getUserPlaylists = (user_id, access_token) => {
         'Authorization': 'Bearer ' + access_token
       }
     }).done( playlists => {
-      console.warn(playlists);
       dispatch({ type: 'PLAYLISTS', playlists })
     });
   }

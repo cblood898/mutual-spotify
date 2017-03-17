@@ -30,6 +30,7 @@ class App extends React.Component {
   authLinks = () => {
     if (Object.keys(this.props.user).length) {
        let links = [
+          { name: 'Playlists', path: '/playlists' },
         ].map( (link, i) => {
           return this.link(i, link.name, link.path)
         });
