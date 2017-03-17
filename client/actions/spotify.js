@@ -27,18 +27,17 @@ export const getPlaylistTracks = (user_id, playlist_id, access_token) => {
       const tracks = spotifyTracks.items.map(item => {
         return { id: item.track.id, name: item.track.name }
       });
-      console.warn(tracks);
+      const jsonTracks = JSON.stringify(tracks);
       const data = {
         user_id,
         playlist_id,
-        tracks
+        tracks: jsonTracks
       }
       $.ajax({
         url: '/api/auth/add_tracks',
         type: 'POST',
         data: data,
       })
-      console.log("ADDEDDDDDD");
       dispatch({ type: 'TRACKS', tracks })
     });
   }

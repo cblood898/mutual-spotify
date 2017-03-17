@@ -47,23 +47,21 @@ router.get('/user', isAuthenticated, (req,res) => {
 });
 
 router.post('/add_tracks', (req,res) => {
-  console.log(req.body)
   const query = {'_id': req.user._id};
+  const tracks = JSON.parse(req.body.tracks);
   const update = {
     [req.body.user_id]: {
       playlist_id: req.body.playlist_id,
-      tracks: req.body.tracks
+      tracks
     }
   }
-  console.log(update);
   User.findOneAndUpdate(
     query,
-    {$push: { tracks: update }},
-    // update,
+    {$push: { playlists: update }},
     {safe: true, upsert: true},
     (err, tracks) => {
       if (err)
-        console.log('error adding tracks');
+        console.log('error adding tracks', err);
     }
   );
 })
