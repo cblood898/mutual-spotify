@@ -46,25 +46,7 @@ router.get('/user', isAuthenticated, (req,res) => {
   return res.json(req.user);
 });
 
-router.post('/add_tracks', (req,res) => {
-  const query = {'_id': req.user._id};
-  const tracks = JSON.parse(req.body.tracks);
-  const update = {
-    [req.body.user_id]: {
-      playlist_id: req.body.playlist_id,
-      tracks
-    }
-  }
-  User.findOneAndUpdate(
-    query,
-    {$push: { playlists: update }},
-    {safe: true, upsert: true},
-    (err, tracks) => {
-      if (err)
-        console.log('error adding tracks', err);
-    }
-  );
-})
+
 
 router.delete('/sign_out', (req, res) => {
   req.logout();
