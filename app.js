@@ -15,6 +15,7 @@ mongoose.connect(mongoURI);
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const spotify = require('./routes/spotify');
+const cp = require('./routes/consensualplaylists');
 const app = express();
 
 // view engine setup
@@ -54,6 +55,7 @@ passport.use(new SpotifyStrategy({
   }
 ));
 
+app.use('/api/playlists', cp);
 app.use('/api/auth', auth);
 app.use('/spotify', spotify);
 app.use('/spotify/login', spotify);

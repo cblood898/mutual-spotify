@@ -1,9 +1,14 @@
 import React from 'react';
+import CPForm from './CPForm';
+import CPList from './CPList';
 
 class Landing extends React.Component {
   render() {
     return (
-      <div>Landing page</div>
+      <div>
+        <CPForm />
+        <CPList />
+      </div>
     );
   }
 };
