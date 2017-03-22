@@ -14,8 +14,7 @@ module.exports = {
     path: path.resolve(path.join(__dirname, '..', 'public'))
   },
   resolve: {
-    // modules: ['client', 'node_modules'],
-    modules: ['client'],
+    modules: ['client', 'node_modules'],
     extensions: [".js"]
   },
   module: {
