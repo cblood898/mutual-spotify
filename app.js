@@ -55,7 +55,7 @@ passport.use(new SpotifyStrategy({
   }
 ));
 
-app.use('/api/playlists', cp);
+app.use('/api/cplists', cp);
 app.use('/api/auth', auth);
 app.use('/spotify', spotify);
 app.use('/spotify/login', spotify);

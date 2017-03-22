@@ -5,8 +5,9 @@ const passport = require('passport');
 const ConsensualPlaylist = require('../models/consensualplaylist');
 
 router.get('/', function(req, res) {
-  ConsensualPlaylist.find(function(err, note) {
-    res.json(playlists);
+  ConsensualPlaylist.find(function(err, cplists) {
+    console.log(cplists)
+    res.json(cplists);
   });
 });
 
@@ -16,8 +17,8 @@ router.post('/', function(req, res) {
     description: req.body.description,
     updatedAt: Date.now()
   })
-  .save(function(err, playlist) {
-    res.json(playlist);
+  .save(function(err, cplist) {
+    res.json(cplist);
   });
 });
 
@@ -48,7 +49,7 @@ router.put('/:id', function(req, res) {
   ConsensualPlaylist.findByIdAndUpdate(req.params.id, {
     $set: body
   }, function(err, note) {
-    res.redirect('/ConsensualPlaylist/' + req.params.id);
+    res.redirect('/cplists/' + req.params.id);
 
   });
 });
@@ -60,13 +61,13 @@ router.post('/:id/add_tracks', (req, res) => {
   const tracks = JSON.parse(req.body.tracks);
   const update = {
     [req.body.user_id]: {
-      playlist_id: req.body.playlist_id,
+      cplist_id: req.body.cplist_id,
       tracks
     }
   }
   ConsensualPlaylist.findOneAndUpdate(query, {
     $push: {
-      playlists: update
+      cplists: update
     }
   }, {
     safe: true,
