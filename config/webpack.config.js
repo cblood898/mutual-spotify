@@ -14,7 +14,8 @@ module.exports = {
     path: path.resolve(path.join(__dirname, '..', 'public'))
   },
   resolve: {
-    modules: ['client', 'node_modules'],
+    // modules: ['client', 'node_modules'],
+    modules: ['client'],
     extensions: [".js"]
   },
   module: {
@@ -26,12 +27,12 @@ module.exports = {
         include: [ path.join(__dirname, "..", "client")],
         options: { cacheDirectory: true }
       },
-      { 
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-        loader:"url-loader", 
-        query: { 
-          limit: 10000, 
-          mimetype: "application/font-woff" 
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader:"url-loader",
+        query: {
+          limit: 10000,
+          mimetype: "application/font-woff"
         }
       },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
