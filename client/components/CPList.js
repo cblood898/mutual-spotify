@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 class CPList extends React.Component {
   render() {
-    console.warn(this.props.cplists);
     const cplists = this.props.cplists || [];
     const cplistList = cplists.map( cplist => {
       return (<li key={cplist._id}>{cplist.title}</li>)

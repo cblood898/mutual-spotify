@@ -1,6 +1,5 @@
 export const getCPlists = () => {
   return (dispatch) => {
-    console.log('hi')
     $.ajax({
       url: '/api/cplists',
       type: 'GET'
@@ -17,7 +16,6 @@ export const addCPlist = (title, description) => {
       type: 'POST',
       data: { title, description }
     }).done( cplist => {
-      console.log(cplist)
       dispatch({ type: 'ADD_CPLIST', cplist })
     });
   }
