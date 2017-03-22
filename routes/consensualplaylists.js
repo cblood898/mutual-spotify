@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const passport = require('passport');
-const ConsensualPlaylist = require('../models/ConsensualPlaylist');
+const ConsensualPlaylist = require('../models/consensualplaylist');
 
 router.get('/', function(req, res) {
   ConsensualPlaylist.find(function(err, note) {
