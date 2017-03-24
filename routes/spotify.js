@@ -115,7 +115,7 @@ router.get('/callback', (req, res) => {
 
         // res.json({msg: 'Good to go!'});
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/playlists/success')
+        res.redirect('/success')
           // querystring.stringify({
           //   access_token: access_token,
           //   refresh_token: refresh_token
