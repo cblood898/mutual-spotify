@@ -8,6 +8,7 @@ import NotFound from './components/NotFound';
 import Playlists from './components/Playlists';
 import Landing from './components/Landing';
 import SetupStuff from './components/SetupStuff';
+import ConsensualPlaylist from './components/ConsensualPlaylist';
 
 const AdminAccess = UserAuthWrapper({
   authSelector: state => state.user,
@@ -25,8 +26,9 @@ export default (
        <IndexRoute component={Landing} />
        <Route path="signup" component={Auth} title="Sign Up" />
        <Route path="signin" component={Auth} title="Sign In" />
+       <Route path="/playlists/:id" component={ConsensualPlaylist} />
        <Route component={AuthenticatedRoutes}>
-         <Route path="/playlists" component={Playlists} />
+
            {/* PROTECTED BY AUTHENTICATION */}
          <Route component={AdminRoutes}>
              {/* PROTECTED BY ADMIN ACCESS */}
