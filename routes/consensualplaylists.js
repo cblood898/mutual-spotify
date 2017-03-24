@@ -60,14 +60,13 @@ router.post('/:id/add_tracks', (req, res) => {
   };
   const tracks = JSON.parse(req.body.tracks);
   const update = {
-    [req.body.user_id]: {
-      cplist_id: req.body.cplist_id,
-      tracks
-    }
+    username: req.body.user_id,
+    cplist_id: req.params.id,
+    tracks
   }
   ConsensualPlaylist.findOneAndUpdate(query, {
     $push: {
-      cplists: update
+      playlists: update
     }
   }, {
     safe: true,

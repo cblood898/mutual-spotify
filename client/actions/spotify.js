@@ -14,7 +14,7 @@ export const getUserPlaylists = (user_id, access_token) => {
   }
 }
 
-export const getPlaylistTracks = (user_id, playlist_id, access_token) => {
+export const getPlaylistTracks = (user_id, playlist_id, access_token, cpId) => {
   return (dispatch) => {
     $.ajax({
       url: `https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`,
@@ -33,7 +33,7 @@ export const getPlaylistTracks = (user_id, playlist_id, access_token) => {
         tracks: jsonTracks
       }
       $.ajax({
-        url: '/api/consensualplaylists/add_tracks',
+        url: `/api/cplists/${cpId}/add_tracks`,
         type: 'POST',
         data: data,
       })

@@ -5,7 +5,7 @@ import SpotifyPlaylists from './SpotifyPlaylists';
 
 class ConsensualPlaylist extends React.Component {
   render() {
-    let { title = '', description = '', playlists = '' } = this.props.cplist || {};
+    let { title = '', description = '', playlists = '', _id = '' } = this.props.cplist || {};
 
     return (
       <div className="container">
@@ -13,7 +13,7 @@ class ConsensualPlaylist extends React.Component {
         <p>{description}</p>
         <div className="row">
           <div className="col s12 m6">
-            <SpotifyPlaylists />
+            <SpotifyPlaylists cpId={_id} />
           </div>
           <div className="col s12 m6">
             list

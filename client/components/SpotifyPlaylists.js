@@ -13,7 +13,7 @@ class Playlists extends React.Component {
     }
 
     const playlistItems = spotifyPlaylists.items || [];
-    console.warn(playlistItems);
+    // console.warn(playlistItems);
     const playlists = playlistItems
     .filter(item => {
       return item.owner.id === user.spotify_auth.username
@@ -24,7 +24,7 @@ class Playlists extends React.Component {
         <a
           key={id}
           className="collection-item"
-          onClick={() => this.props.dispatch(getPlaylistTracks(user.spotify_auth.username, id, access_token))}
+          onClick={() => this.props.dispatch(getPlaylistTracks(user.spotify_auth.username, id, access_token, this.props.cpId))}
         >{name}</a>
       )
     });

@@ -8,7 +8,6 @@ import NotFound from './components/NotFound';
 import Landing from './components/Landing';
 import SetupStuff from './components/SetupStuff';
 import ConsensualPlaylist from './components/ConsensualPlaylist';
-import GoBack from './components/GoBack';
 
 const AdminAccess = UserAuthWrapper({
   authSelector: state => state.user,
