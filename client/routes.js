@@ -5,7 +5,6 @@ import App from './containers/App';
 import AuthenticatedRoutes from './components/AuthenticatedRoutes';
 import Auth from './components/Auth';
 import NotFound from './components/NotFound';
-import Playlists from './components/Playlists';
 import Landing from './components/Landing';
 import SetupStuff from './components/SetupStuff';
 import ConsensualPlaylist from './components/ConsensualPlaylist';

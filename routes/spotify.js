@@ -9,7 +9,9 @@ const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 
 const stateKey = 'spotify_auth_state';
-const redirect_uri = process.env.NODE_ENV === 'production' ? 'https://jamify-capstone.herokuapp.com/spotify/callback' : 'http://localhost:3000/spotify/callback';
+const redirect_uri = process.env.NODE_ENV === 'production' ?
+'https://jamify-capstone.herokuapp.com/spotify/callback' :
+'http://localhost:3000/spotify/callback';
 
 /**
  * Generates a random string containing numbers and letters
@@ -111,12 +113,13 @@ router.get('/callback', (req, res) => {
           });
         });
 
+        // res.json({msg: 'Good to go!'});
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
+        res.redirect('/playlists/success')
+          // querystring.stringify({
+          //   access_token: access_token,
+          //   refresh_token: refresh_token
+          // }));
 
       } else {
         res.redirect('/#' +

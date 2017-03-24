@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Playlist from './Playlist';
 import { getUserPlaylists, getPlaylistTracks } from '../actions/spotify';
 
 class Playlists extends React.Component {
@@ -26,7 +25,8 @@ class Playlists extends React.Component {
           key={id}
           className="collection-item"
           onClick={() => this.props.dispatch(getPlaylistTracks(user.spotify_auth.username, id, access_token))}
-        >{name}</a>)
+        >{name}</a>
+      )
     });
 
     return (

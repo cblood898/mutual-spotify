@@ -33,7 +33,7 @@ export const getPlaylistTracks = (user_id, playlist_id, access_token) => {
         tracks: jsonTracks
       }
       $.ajax({
-        url: '/api/auth/add_tracks',
+        url: '/api/consensualplaylists/add_tracks',
         type: 'POST',
         data: data,
       })

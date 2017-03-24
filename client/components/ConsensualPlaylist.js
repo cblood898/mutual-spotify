@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import SpotifyPlaylists from './SpotifyPlaylists';
 
 
 class ConsensualPlaylist extends React.Component {
@@ -7,9 +8,17 @@ class ConsensualPlaylist extends React.Component {
     let { title = '', description = '', playlists = '' } = this.props.cplist || {};
 
     return (
-      <div>
+      <div className="container">
         <h3>{title}</h3>
-        <p>Description:  {description}</p>
+        <p>{description}</p>
+        <div className="row">
+          <div className="col s12 m6">
+            <SpotifyPlaylists />
+          </div>
+          <div className="col s12 m6">
+            list
+          </div>
+        </div>
       </div>
     );
   }
