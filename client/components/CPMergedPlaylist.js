@@ -13,17 +13,17 @@ class CPMergedPlaylist extends React.Component{
           return playlists[1].tracks.map(function(x) {return x.id; }).indexOf(n.id) > -1;
         });
 
-        const atracks = mtracks.map(track => {
+        const atracks = mtracks.map((track, i) => {
           return (
-            <div className="collection-item">
+            <div key={i} className="collection-item">
               {track.name}
             </div>
           )
         });
+        console.warn(atracks);
         return atracks;
       }
-      return (<div>hi!</div>)
-    };
+    }
 
     // const tracks = playlists.map( (playlist, index) => {
     //   let mtracks = [];
@@ -47,7 +47,7 @@ class CPMergedPlaylist extends React.Component{
 
     return (
       <div>
-        {tracks}
+        {tracks()}
       </div>
     )
   }

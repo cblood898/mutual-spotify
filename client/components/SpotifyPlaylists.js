@@ -13,7 +13,7 @@ class SpotifyPlaylists extends React.Component {
     }
 
     const playlistItems = spotifyPlaylists.items || [];
-    console.warn(playlistItems);
+    // console.warn(playlistItems);
     const playlists = playlistItems
     .filter(item => {
       return item.owner.id === user.spotify_auth.username
