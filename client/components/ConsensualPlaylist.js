@@ -29,7 +29,7 @@ class ConsensualPlaylist extends React.Component {
         :
           <div>
             {/* <SignUp /> */}
-            Please sign in
+            Please sign in.
           </div>
         }
       </div>
