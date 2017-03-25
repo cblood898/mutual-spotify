@@ -22,7 +22,7 @@ class CPMergedPlaylist extends React.Component{
         });
         return atracks;
       }
-      return (<div>hi</div>)
+      return (<div>hi!</div>)
     };
 
     // const tracks = playlists.map( (playlist, index) => {
