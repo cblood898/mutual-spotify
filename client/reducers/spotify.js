@@ -1,4 +1,4 @@
-const spotify = ( state = [], action ) => {
+const spotify = ( state = { playlists: [], tracks: []}, action ) => {
   switch (action.type) {
     case 'PLAYLISTS':
       return { playlists: action.playlists, ...state }
