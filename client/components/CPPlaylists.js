@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-class List extends React.Component{
+class CPPlaylists extends React.Component{
   render() {
     const { playlists = [] } = this.props.cplist;
     const tracks = playlists.map( playlist => {
@@ -26,4 +26,4 @@ class List extends React.Component{
   }
 }
 
-export default connect()(List);
+export default connect()(CPPlaylists);

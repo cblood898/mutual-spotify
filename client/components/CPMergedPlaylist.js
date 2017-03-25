@@ -3,21 +3,27 @@ import { connect } from 'react-redux';
 
 class CPMergedPlaylist extends React.Component{
   render() {
-    const { playlists = [{},{}] } = this.props.cplist;
+    const { playlists = [] } = this.props.cplist;
 
-    const mtracks = playlists[0].tracks.filter((n) => {
-      console.log(n.name)
-      console.log(playlists[1].tracks.map(function(x) {return x.id; }).indexOf(n.id));
-      return playlists[1].tracks.map(function(x) {return x.id; }).indexOf(n.id) > -1;
-    });
+    const tracks = () => {
+      if (playlists.length > 0) {
+        const mtracks = playlists[0].tracks.filter((n) => {
+          console.log(n.name)
+          console.log(playlists[1].tracks.map(function(x) {return x.id; }).indexOf(n.id));
+          return playlists[1].tracks.map(function(x) {return x.id; }).indexOf(n.id) > -1;
+        });
 
-    const tracks = mtracks.map(track => {
-      return (
-        <div className="collection-item">
-          {track.name}
-        </div>
-      )
-    });
+        const atracks = mtracks.map(track => {
+          return (
+            <div className="collection-item">
+              {track.name}
+            </div>
+          )
+        });
+        return atracks;
+      }
+      return (<div>hi</div>)
+    };
 
     // const tracks = playlists.map( (playlist, index) => {
     //   let mtracks = [];
