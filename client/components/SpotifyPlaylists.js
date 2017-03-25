@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getUserPlaylists, getPlaylistTracks } from '../actions/spotify';
 
-class Playlists extends React.Component {
+class SpotifyPlaylists extends React.Component {
   render() {
     const spotifyPlaylists = this.props.spotify.playlists || [];
     const user = this.props.user || {};
@@ -13,7 +13,7 @@ class Playlists extends React.Component {
     }
 
     const playlistItems = spotifyPlaylists.items || [];
-    // console.warn(playlistItems);
+    console.warn(playlistItems);
     const playlists = playlistItems
     .filter(item => {
       return item.owner.id === user.spotify_auth.username
@@ -52,4 +52,4 @@ const mapStateToProps = (state) => {
  return { spotify: state.spotify, user: state.user }
 }
 
-export default connect(mapStateToProps)(Playlists);
+export default connect(mapStateToProps)(SpotifyPlaylists);
