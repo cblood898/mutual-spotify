@@ -79,4 +79,28 @@ router.post('/:id/add_tracks', (req, res) => {
   );
 })
 
+router.post('/:id/add_spotify_data', (req, res) => {
+  const query = {
+    '_id': req.params.id
+  };
+  const spotifyPlaylist = JSON.parse(req.body.playlist);
+  const update = {
+    id: spotifyPlaylist.id,
+    url: spotifyPlaylist.external_urls.spotify,
+    uri: spotifyPlaylist.uri,
+  }
+  ConsensualPlaylist.findOneAndUpdate(query, {
+    $push: {
+      spotifyData: update
+    }
+  }, {
+    safe: true,
+    upsert: true
+  }, (err) => {
+    if (err)
+      console.log('error saving spotify playlist data', err);
+    }
+  );
+})
+
 module.exports = router;

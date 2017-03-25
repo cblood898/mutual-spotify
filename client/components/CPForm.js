@@ -5,7 +5,7 @@ import { addCPlist } from '../actions/cplists';
 
 class CPForm extends React.Component {
   render() {
-    let { dispatch } = this.props;
+    let { dispatch, user } = this.props;
     let title;
     let description;
     let form;
@@ -15,7 +15,7 @@ class CPForm extends React.Component {
           ref={ n => form = n }
           onSubmit={ e => {
             e.preventDefault();
-            dispatch(addCPlist(title.value, description.value));
+            dispatch(addCPlist(user, title.value, description.value));
             form.reset();
           }}
         >
@@ -28,4 +28,8 @@ class CPForm extends React.Component {
   }
 };
 
-export default connect()(CPForm);
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps)(CPForm);

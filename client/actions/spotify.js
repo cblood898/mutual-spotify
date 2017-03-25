@@ -47,3 +47,24 @@ export const getPlaylistTracks = (user_id, playlist_id, playlist_name, access_to
     });
   }
 }
+
+// export const postJamifyPlaylistToSpotify = (user_id, access_token, name, cpId) => {
+//   return (dispatch) => {
+//     $.ajax({
+//       url: `https://api.spotify.com/v1/users/${user_id}/playlists`,
+//       type: 'POST',
+//       headers: {
+//         'Authorization': 'Bearer ' + access_token
+//       },
+//       body: {'name': name},
+//     })
+//     .done( playlist => {
+//       $.ajax({
+//         url: `/api/cplists/${cpId}/add_spotify_data`,
+//         type: 'POST',
+//         data: playlist,
+//       })
+//       dispatch({ type: 'PLAYLIST', playlist })
+//     });
+//   }
+// }
