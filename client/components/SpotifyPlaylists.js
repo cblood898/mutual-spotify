@@ -24,19 +24,25 @@ class Playlists extends React.Component {
         <a
           key={id}
           className="collection-item"
-          onClick={() => this.props.dispatch(getPlaylistTracks(user.spotify_auth.username, id, access_token, this.props.cpId))}
+          onClick={() => this.props.dispatch(getPlaylistTracks(user.spotify_auth.username, id, name, access_token, this.props.cpId))}
         >{name}</a>
       )
     });
 
     return (
       <div>
-        <a className="btn" href="/spotify/login">Link Spotify</a>
-        <div className="cols s12 m6">
-          <div className="collection">
-            { playlists }
+        {playlistItems.length > 0 ?
+          <div className="cols s12 m6">
+            <div className="collection">
+              { playlists }
+            </div>
           </div>
-        </div>
+        :
+          <div>
+            <a className="btn" href="/spotify/login">Get Spotify Playlists</a>
+            No playlists
+          </div>
+        }
       </div>
     );
   };

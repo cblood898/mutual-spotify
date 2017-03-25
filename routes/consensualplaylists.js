@@ -6,7 +6,7 @@ const ConsensualPlaylist = require('../models/consensualplaylist');
 
 router.get('/', function(req, res) {
   ConsensualPlaylist.find(function(err, cplists) {
-    console.log(cplists)
+    // console.log(cplists)
     res.json(cplists);
   });
 });
@@ -61,6 +61,7 @@ router.post('/:id/add_tracks', (req, res) => {
   const tracks = JSON.parse(req.body.tracks);
   const update = {
     username: req.body.user_id,
+    playlist_name: req.body.playlist_name,
     cplist_id: req.params.id,
     tracks
   }
