@@ -16,7 +16,8 @@ class CPMergedPlaylist extends React.Component{
         const atracks = mtracks.map((track, i) => {
           return (
             <div key={i} className="collection-item">
-              {track.name}
+              <span className="title">{track.name}</span>
+              <p>{track.id}</p>
             </div>
           )
         });

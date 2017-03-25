@@ -11,7 +11,7 @@ class ConsensualPlaylist extends React.Component {
     let { user = {} } = this.props;
     const isAdmin = user.role === 'admin';
     return (
-      <div className="container">
+      <div>
         <h3>{isAdmin && <span>Admin - </span>}{title}</h3>
         <p>{description}</p>
         {user._id ?

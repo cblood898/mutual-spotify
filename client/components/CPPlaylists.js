@@ -6,7 +6,12 @@ class CPPlaylists extends React.Component{
     const { playlists = [] } = this.props.cplist;
     const tracks = playlists.map( (playlist, index) => {
       const ptracks = playlist.tracks.map((track, i) => {
-        return (<div key={i} className="collection-item">{track.name}</div>)
+        return (
+          <div key={i} className="collection-item">
+            <span className="title">{track.name}</span>
+            <p className="metadata">{track.id}</p>
+          </div>
+        )
       })
       return (
         <div key={index} className="collection with-header">
