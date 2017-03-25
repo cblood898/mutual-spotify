@@ -8,9 +8,7 @@ class CPMergedPlaylist extends React.Component{
     const tracks = () => {
       if (playlists.length > 1) {
         const mtracks = playlists[0].tracks.filter((n) => {
-          console.log(n.name)
-          console.log(playlists[1].tracks.map(function(x) {return x.id; }).indexOf(n.id));
-          return playlists[1].tracks.map(function(x) {return x.id; }).indexOf(n.id) > -1;
+          return playlists[1].tracks.map(x => {return x.name; }).indexOf(n.name) > -1;
         });
 
         const atracks = mtracks.map((track, i) => {

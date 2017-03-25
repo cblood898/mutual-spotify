@@ -10,6 +10,7 @@ class CPPlaylists extends React.Component{
           <div key={i} className="collection-item">
             <span className="title">{track.name}</span>
             <p className="metadata">{track.id}</p>
+            <p className="metadata">{track.uri}</p>
           </div>
         )
       })

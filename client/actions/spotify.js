@@ -24,7 +24,12 @@ export const getPlaylistTracks = (user_id, playlist_id, playlist_name, access_to
       }
     }).done( spotifyTracks => {
       const tracks = spotifyTracks.items.map(item => {
-        return { id: item.track.id, name: item.track.name }
+        return {
+          id: item.track.id,
+          name: item.track.name,
+          artist: item.track.artist,
+          uri: item.track.uri,
+        }
       });
       const jsonTracks = JSON.stringify(tracks);
       const data = {
