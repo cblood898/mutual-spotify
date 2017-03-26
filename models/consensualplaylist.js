@@ -5,7 +5,8 @@ let ConsensualPlaylist = new Schema({
     title: String,
     description: String,
     updatedAt: Date,
-    playlists: Array
+    playlists: Array,
+    spotifyData: Object,
 });
 
 module.exports = mongoose.model('ConsensualPlaylist', ConsensualPlaylist);

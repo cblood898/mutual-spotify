@@ -12,12 +12,15 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
+  const spotifyData = JSON.parse(req.body.spotifyData);
   new ConsensualPlaylist({
     title: req.body.title,
     description: req.body.description,
-    updatedAt: Date.now()
+    spotifyData: spotifyData,
+    updatedAt: Date.now(),
   })
   .save(function(err, cplist) {
+    console.log(err)
     res.json(cplist);
   });
 });
@@ -79,28 +82,29 @@ router.post('/:id/add_tracks', (req, res) => {
   );
 })
 
-router.post('/:id/add_spotify_data', (req, res) => {
-  const query = {
-    '_id': req.params.id
-  };
-  const spotifyPlaylist = JSON.parse(req.body.playlist);
-  const update = {
-    id: spotifyPlaylist.id,
-    url: spotifyPlaylist.external_urls.spotify,
-    uri: spotifyPlaylist.uri,
-  }
-  ConsensualPlaylist.findOneAndUpdate(query, {
-    $push: {
-      spotifyData: update
-    }
-  }, {
-    safe: true,
-    upsert: true
-  }, (err) => {
-    if (err)
-      console.log('error saving spotify playlist data', err);
-    }
-  );
-})
+// router.post('/:id/add_spotify_data', (req, res) => {
+//   const query = {
+//     '_id': req.params.id
+//   };
+//   const spotifyPlaylist = JSON.parse(req.body.playlist);
+//   const update = {
+//     id: spotifyPlaylist.id,
+//     url: spotifyPlaylist.external_urls.spotify,
+//     uri: spotifyPlaylist.uri,
+//   }
+//   console.log(update)
+//   ConsensualPlaylist.findOneAndUpdate(query, {
+//     $push: {
+//       spotifyData: update
+//     }
+//   }, {
+//     safe: true,
+//     upsert: true
+//   }, (err) => {
+//     if (err)
+//       console.log('error saving spotify playlist data', err);
+//     }
+//   );
+// })
 
 module.exports = router;

@@ -19,7 +19,6 @@ class CPMergedPlaylist extends React.Component{
             </div>
           )
         });
-        console.warn(atracks);
         return atracks;
       }
     }

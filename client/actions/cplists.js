@@ -11,28 +11,27 @@ export const getCPlists = () => {
 
 export const addCPlist = (user, title, description) => {
   return (dispatch) => {
+    const body = JSON.stringify({'name': `${title} (Jamify)`});
     $.ajax({
-      url: `/api/cplists`,
+      url: `https://api.spotify.com/v1/users/${user.spotify_auth.username}/playlists`,
       type: 'POST',
-      data: { title, description }
-    }).done( cplist => {
-      const body = JSON.stringify({'name': title});
-      $.ajax({
-        url: `https://api.spotify.com/v1/users/${user.spotify_auth.username}/playlists`,
-        type: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + user.spotify_auth.access_token
-        },
-        body: body,
+      headers: {
+        'Authorization': 'Bearer ' + user.spotify_auth.access_token
+      },
+      data: body,
+    }).done( playlist => {
+      const spotifyData = JSON.stringify({
+        id: playlist.id,
+        url: playlist.external_urls.spotify,
+        uri: playlist.uri,
       })
-      .done( playlist => {
-        $.ajax({
-          url: `/api/cplists/${cplist._id}/add_spotify_data`,
-          type: 'POST',
-          data: playlist,
-        })
-      });
-      dispatch({ type: 'ADD_CPLIST', cplist })
+      $.ajax({
+        url: `/api/cplists`,
+        type: 'POST',
+        data: { title, description, spotifyData }
+      }).done( cplist => {
+        dispatch({ type: 'ADD_CPLIST', cplist })
+      })
     });
   }
 }
