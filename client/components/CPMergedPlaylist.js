@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {postTracksToSpotify} from '../actions/spotify';
 
 class CPMergedPlaylist extends React.Component{
   render() {
-    const { playlists = [] } = this.props.cplist;
+    const user = this.props.user || {};
+    const { playlists = [], spotifyData = {} } = this.props.cplist;
+    const spotifyPlaylistId = spotifyData.id || '';
 
     const tracks = () => {
       if (playlists.length > 1) {
         const mtracks = playlists[0].tracks.filter((n) => {
           return playlists[1].tracks.map(x => {return x.name; }).indexOf(n.name) > -1;
-        });
-
-        const atracks = mtracks.map((track, i) => {
+        }).map((track, i) => {
           return (
             <div key={i} className="collection-item">
               <span className="title">{track.name}</span>
@@ -19,36 +20,43 @@ class CPMergedPlaylist extends React.Component{
             </div>
           )
         });
-        return atracks;
+        return mtracks;
       }
     }
 
-    // const tracks = playlists.map( (playlist, index) => {
-    //   let mtracks = [];
-    //   if (index > 0) {
-    //     mtracks = playlist.tracks.filter(t => {
-    //       return playlists[index - 1].tracks.indexOf(t) != -1;
-    //     })
-    //   }
-      // const ptracks = playlist.tracks.map(track => {
-      //   return {track}
-      // })
-      // return (
-      //   <div className="collection with-header">
-      //     <div className="collection-header">
-      //       {playlist.username} - {playlist.playlist_name}
-      //     </div>
-      //     {mtracks}
-      //   </div>
-      // )
-    // });
+    const sendTracks = () => {
+      if (playlists.length > 1) {
+        const mtracks = playlists[0].tracks.filter((n) => {
+          return playlists[1].tracks.map(x => {return x.name; }).indexOf(n.name) > -1;
+        })
+        .map( track  => {
+          return track.uri;
+        });
+
+        return mtracks;
+      }
+      return [];
+    }
 
     return (
       <div>
-        {tracks()}
+        <form
+          onSubmit={ e => {
+            e.preventDefault();
+
+            this.props.dispatch(postTracksToSpotify( user, spotifyPlaylistId, sendTracks() ));
+          }}
+        >
+          <button className="btn" type="submit">Add Tracks to Spotify</button>
+        </form>
+        <div className="collection">{tracks()}</div>
       </div>
     )
   }
 }
 
-export default connect()(CPMergedPlaylist);
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps)(CPMergedPlaylist);

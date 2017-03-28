@@ -47,24 +47,34 @@ export const getPlaylistTracks = (user_id, playlist_id, playlist_name, access_to
     });
   }
 }
+export const postTracksToSpotify = ( user, playlist_id, uris ) => {
+  return (dispatch) => {
+    console.log("Posting Tracks", user, playlist_id, uris );
+    const body = JSON.stringify({uris});
+    $.ajax({
+      url: `https://api.spotify.com/v1/users/${user.spotify_auth.username}/playlists/${playlist_id}/tracks`,
+      type: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + user.spotify_auth.access_token
+      },
+      data: body,
+    }).done( playlist => {
+      console.log(playlist);
 
-// export const postJamifyPlaylistToSpotify = (user_id, access_token, name, cpId) => {
-//   return (dispatch) => {
-//     $.ajax({
-//       url: `https://api.spotify.com/v1/users/${user_id}/playlists`,
-//       type: 'POST',
-//       headers: {
-//         'Authorization': 'Bearer ' + access_token
-//       },
-//       body: {'name': name},
-//     })
-//     .done( playlist => {
-//       $.ajax({
-//         url: `/api/cplists/${cpId}/add_spotify_data`,
-//         type: 'POST',
-//         data: playlist,
-//       })
-//       dispatch({ type: 'PLAYLIST', playlist })
-//     });
-//   }
-// }
+      // TODO: Add to database and state
+
+      // const spotifyData = JSON.stringify({
+      //   id: playlist.id,
+      //   url: playlist.external_urls.spotify,
+      //   uri: playlist.uri,
+      // })
+      // $.ajax({
+      //   url: `/api/cplists`,
+      //   type: 'POST',
+      //   data: { title, description, spotifyData }
+      // }).done( cplist => {
+      //   dispatch({ type: 'ADD_CPLIST', cplist })
+      // })
+    });
+  }
+}
