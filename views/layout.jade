@@ -7,7 +7,7 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     script(src="/jquery/jquery.min.js")
     script(src="/materialize/materialize.min.js")
-    - src = process.env.NODE_ENV === 'production' ? 'vendor.js' : 'http://localhost:8080/vendor.js'
+    - src = process.env.NODE_ENV === 'production' ? '/vendor.js' : 'http://localhost:8080/vendor.js'
     script(src=src)
   body
     block content
