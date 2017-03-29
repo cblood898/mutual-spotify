@@ -92,10 +92,10 @@ router.put('/:id/add_uris', (req, res) => {
   }, {
     safe: true,
     upsert: true
-  }, (err, tracks) => {
+  }, (err, playlist) => {
     if (err)
       console.log('error adding tracks', err);
-    res.json(tracks)
+    res.json(playlist)
   });
 })
 

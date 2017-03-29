@@ -66,9 +66,9 @@ export const postTracksToSpotify = ( user, cplist, uris ) => {
         url: `/api/cplists/${cplist._id}/add_uris`,
         type: 'PUT',
         data: databaseData
-      }).done( cplist => {
-        // console.log(cplist);
-        // dispatch({ type: 'UPDATE_CPLIST_TRACKS', cplist })
+      }).done( playlist => {
+        const urisOnSpotify = playlist.tracksInSpotifyPlaylist;
+        dispatch({ type: 'UPDATE_TRACKS_SENT_TO_SPOTIFY', urisOnSpotify })
       })
     });
   }
