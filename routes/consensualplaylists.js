@@ -34,15 +34,15 @@ router.get('/:id', function(req, res) {
   });
 });
 
-router.delete('/:id', function(req, res) {
-  ConsensualPlaylist.findById(req.params.id, function(err, ConsensualPlaylist) {
-    note.remove(function(err, ConsensualPlaylist) {
-      res.redirect('/ConsensualPlaylist');
+router.delete('/:id', (req, res) => {
+  ConsensualPlaylist.findById(req.params.id, (err, cplist) => {
+    cplist.remove((err, list) => {
+      res.json(list)
     });
   });
 });
 
-router.put('/:id', function(req, res) {
+router.put('/:id', (req, res) => {
   var body = {
     title: req.body.title,
     description: req.body.description,
@@ -51,7 +51,7 @@ router.put('/:id', function(req, res) {
 
   ConsensualPlaylist.findByIdAndUpdate(req.params.id, {
     $set: body
-  }, function(err, note) {
+  }, (err, note) => {
     res.redirect('/cplists/' + req.params.id);
 
   });

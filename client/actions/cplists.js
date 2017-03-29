@@ -35,3 +35,14 @@ export const addCPlist = (user, title, description) => {
     });
   }
 }
+
+export const deleteCPlist = (id) => {
+  return (dispatch) => {
+    $.ajax({
+      url: `/api/cplists/${id}`,
+      type: 'DELETE'
+    }).done( () => {
+      dispatch( { type: 'DELETE_CPLIST', id })
+    })
+  }
+}
