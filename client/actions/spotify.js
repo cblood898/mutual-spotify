@@ -53,9 +53,10 @@ export const postTracksToSpotify = ( user, playlist_id, uris ) => {
     const body = JSON.stringify({uris});
     $.ajax({
       url: `https://api.spotify.com/v1/users/${user.spotify_auth.username}/playlists/${playlist_id}/tracks`,
-      type: 'POST',
+      type: 'PUT',
       headers: {
-        'Authorization': 'Bearer ' + user.spotify_auth.access_token
+        'Authorization': 'Bearer ' + user.spotify_auth.access_token,
+        'Content-Type': 'application/json',
       },
       data: body,
     }).done( playlist => {
