@@ -47,10 +47,10 @@ export const getPlaylistTracks = (user_id, playlist_id, playlist_name, access_to
     });
   }
 }
-export const postTracksToSpotify = ( user, playlist_id, uris ) => {
+export const postTracksToSpotify = ( user, cplist, uris ) => {
   return (dispatch) => {
-    console.log("Posting Tracks", user, playlist_id, uris );
-    const body = JSON.stringify({uris});
+    const playlist_id = cplist.spotifyData.id;
+    const body = JSON.stringify({uris: uris});
     $.ajax({
       url: `https://api.spotify.com/v1/users/${user.spotify_auth.username}/playlists/${playlist_id}/tracks`,
       type: 'PUT',
@@ -60,22 +60,16 @@ export const postTracksToSpotify = ( user, playlist_id, uris ) => {
       },
       data: body,
     }).done( playlist => {
-      console.log(playlist);
-
+      const databaseData = { uris: JSON.stringify(uris) };
       // TODO: Add to database and state
-
-      // const spotifyData = JSON.stringify({
-      //   id: playlist.id,
-      //   url: playlist.external_urls.spotify,
-      //   uri: playlist.uri,
-      // })
-      // $.ajax({
-      //   url: `/api/cplists`,
-      //   type: 'POST',
-      //   data: { title, description, spotifyData }
-      // }).done( cplist => {
-      //   dispatch({ type: 'ADD_CPLIST', cplist })
-      // })
+      $.ajax({
+        url: `/api/cplists/${cplist._id}/add_uris`,
+        type: 'PUT',
+        data: databaseData
+      }).done( cplist => {
+        // console.log(cplist);
+        // dispatch({ type: 'UPDATE_CPLIST_TRACKS', cplist })
+      })
     });
   }
 }

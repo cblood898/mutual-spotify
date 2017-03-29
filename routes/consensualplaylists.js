@@ -78,8 +78,25 @@ router.post('/:id/add_tracks', (req, res) => {
   }, (err, tracks) => {
     if (err)
       console.log('error adding tracks', err);
-    }
-  );
+    res.json(tracks)
+  });
+})
+
+router.put('/:id/add_uris', (req, res) => {
+  const query = {
+    '_id': req.params.id
+  };
+  const uris = JSON.parse(req.body.uris);
+  ConsensualPlaylist.findOneAndUpdate(query, {
+    tracksInSpotifyPlaylist: uris
+  }, {
+    safe: true,
+    upsert: true
+  }, (err, tracks) => {
+    if (err)
+      console.log('error adding tracks', err);
+    res.json(tracks)
+  });
 })
 
 module.exports = router;

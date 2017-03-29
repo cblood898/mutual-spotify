@@ -32,19 +32,16 @@ class CPMergedPlaylist extends React.Component{
         .map( track  => {
           return track.uri;
         });
-
         return mtracks;
       }
       return [];
     }
-
     return (
       <div>
         <form
           onSubmit={ e => {
             e.preventDefault();
-
-            this.props.dispatch(postTracksToSpotify( user, spotifyPlaylistId, sendTracks() ));
+            this.props.dispatch(postTracksToSpotify( user, this.props.cplist, sendTracks() ));
           }}
         >
           <button className="btn" type="submit">Add Tracks to Spotify</button>
