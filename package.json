@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "dev_server": "webpack-dev-server --progress --config config/webpack.config.js",
     "build": "webpack --config config/webpack.config.js",
-    "heroku-postbuild": "yarn build"
+    "heroku-postbuild": "yarn build",
+    "profile": "webpack --config config/webpack.config.js --profile --json > stats.json"
   },
   "dependencies": {
     "autoprefixer": "^6.7.6",
