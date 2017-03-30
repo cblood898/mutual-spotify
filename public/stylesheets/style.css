@@ -32,3 +32,9 @@ a {
   padding: 0;
   font-size: .7em;
 }
+
+/*MATERIALIZE OVERRIDES*/
+
+nav {
+  background-color: #29aae2 !important;
+}

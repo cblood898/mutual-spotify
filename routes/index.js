@@ -3,7 +3,10 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Jamify' });
+  let remember = false;
+  if (req.user)
+    remember = Object.keys(req.user).length;
+  res.render('index', { title: 'Jamify', remember });
 });
 
 module.exports = router;

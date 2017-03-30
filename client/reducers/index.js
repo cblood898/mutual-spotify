@@ -4,6 +4,7 @@ import user from './user';
 import flash from './flash';
 import spotify from './spotify';
 import cplists from './cplists';
+import remember from './remember';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   flash,
   spotify,
   cplists,
+  remember,
 });
 
 export default rootReducer;

@@ -9,6 +9,7 @@ export const refreshLogin = (user = null) => {
         dataType: 'JSON'
       }).done( user => {
         dispatch(setUser(user));
+        return { type: 'REMEMBER' }
       })
     }
   }
@@ -22,6 +23,7 @@ export const logout = (router) => {
     }).done( () => {
       router.push('/signin')
       dispatch(setUser())
+      return { type: 'FORGET' }
     })
   }
 }
