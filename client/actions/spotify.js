@@ -63,14 +63,13 @@ export const postTracksToSpotify = ( user, cplist, uris ) => {
       data: body,
     }).done( playlist => {
       const databaseData = { uris: JSON.stringify(uris) };
-      // TODO: Add to database and state
       $.ajax({
         url: `/api/cplists/${cplist._id}/add_uris`,
         type: 'PUT',
         data: databaseData
-      }).done( playlist => {
-        const urisOnSpotify = playlist.tracksInSpotifyPlaylist;
-        dispatch({ type: 'UPDATE_TRACKS_SENT_TO_SPOTIFY', urisOnSpotify })
+      }).done( cplist => {
+        console.log(cplist)
+        dispatch({ type: 'UPDATE_CPLIST', cplist })
       })
     });
   }

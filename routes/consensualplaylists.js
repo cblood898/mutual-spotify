@@ -91,11 +91,16 @@ router.put('/:id/add_uris', (req, res) => {
     tracksInSpotifyPlaylist: uris
   }, {
     safe: true,
-    upsert: true
+    upsert: true,
+    new: true 
   }, (err, playlist) => {
+    console.log(playlist)
     if (err)
       console.log('error adding tracks', err);
-    res.json(playlist)
+    else{
+      res.json(playlist)
+      console.log(playlist)
+    }
   });
 })
 
