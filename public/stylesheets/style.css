@@ -45,6 +45,9 @@ a {
   color: #ffffff !important;
 }
 /*MATERIALIZE OVERRIDES*/
+body {
+  color: rgb(41, 170, 226); !important;
+}
 
 nav {
   background-color: #29aae2 !important;
