@@ -14,9 +14,11 @@ class CPMergedPlaylist extends React.Component{
           return playlists[1].tracks.map(x => {return x.name; }).indexOf(n.name) > -1;
         }).map((track, i) => {
           return (
-            <div key={i} className="collection-item">
+            <div key={i} className="collection-item avatar">
+              <img src={track.image} alt="" className="circle"/>
               <span className="title">{track.name}</span>
-              <p>{track.id}</p>
+              <p className="metadata">{track.artists}</p>
+              <audio controls src={track.previewUrl}></audio>
             </div>
           )
         });

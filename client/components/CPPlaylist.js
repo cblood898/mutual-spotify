@@ -16,10 +16,11 @@ class CPPlaylist extends React.Component {
     const { playlist } = this.props;
     const ptracks = playlist.tracks.map((track, i) => {
       return (
-        <div key={i} className="collection-item">
+        <div key={i} className="collection-item avatar">
+          <img src={track.image} alt="" className="circle"/>
           <span className="title">{track.name}</span>
-          <p className="metadata">{track.id}</p>
-          <p className="metadata">{track.uri}</p>
+          <p className="metadata">{track.artists}</p>
+          <audio controls src={track.previewUrl}></audio>
         </div>
       )
     })

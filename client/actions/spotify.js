@@ -27,7 +27,9 @@ export const getPlaylistTracks = (user_id, playlist_id, playlist_name, access_to
         return {
           id: item.track.id,
           name: item.track.name,
-          artist: item.track.artist,
+          artists: item.track.artists[0].name,
+          image: item.track.album.images[2].url,
+          previewUrl: item.track.preview_url,
           uri: item.track.uri,
         }
       });
