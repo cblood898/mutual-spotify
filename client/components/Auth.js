@@ -25,7 +25,7 @@ class Auth extends React.Component {
       <div>
         <h2 className="center">{this.props.route.title}</h2>
           <form onSubmit={this.handleSubmit}>
-            <input type="email" required={true} ref={ n => this.email = n } placeholder="email" />
+            <input type="email" required={true} ref={ n => this.email = n } placeholder="email" autoFocus={focus}/>
             <input type="password" required={true} ref={n => this.password = n } placeholder="password" />
            <button className="btn">{this.props.route.title}</button>
          </form>
