@@ -17,6 +17,9 @@ class SpotifyPlaylists extends React.Component {
     .filter(item => {
       return item.owner.id === user.spotify_auth.username
     })
+    .filter(item => {
+      return item.name.indexOf("(Jamify)") === -1
+    })
     .map(playlist => {
       let { id, name } = playlist;
       return (
