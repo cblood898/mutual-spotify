@@ -36,8 +36,36 @@ a {
 .pointy {
   cursor: pointer;
 }
+
 /*MATERIALIZE OVERRIDES*/
+body {
+  color: rgb(41, 170, 226); !important;
+}
 
 nav {
   background-color: #29aae2 !important;
+}
+
+body {
+  background-color: #424242 !important;
+}
+
+input, select, textarea {
+    color: #ffffff !important;
+}
+
+textarea:focus, input:focus {
+    color: #ffffff !important;
+}
+
+.collection-item {
+  background-color: rgba(0,0,0,0.3) !important;
+}
+
+.btn {
+  background-color: #29aae2 !important;
+}
+
+.material-icons {
+  color: #ffffff !important;
 }

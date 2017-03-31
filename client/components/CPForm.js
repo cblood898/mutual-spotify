@@ -19,7 +19,7 @@ class CPForm extends React.Component {
             form.reset();
           }}
         >
-          <input name="title" type="text" ref={ n => title = n } placeholder="Jamify Playlist Title" />
+          <input name="title" type="text" ref={ n => title = n } placeholder="Jamify Playlist Title" autoFocus='focus'/>
           <input name="description" type="text" ref={ n => description = n } placeholder="Jamify Playlist Description" />
           <button className="btn" type="submit">Add Jamify Playlist</button>
         </form>
