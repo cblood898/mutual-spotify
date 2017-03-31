@@ -33,6 +33,9 @@ a {
   font-size: .7em;
 }
 
+.pointy {
+  cursor: pointer;
+}
 /*MATERIALIZE OVERRIDES*/
 
 nav {
