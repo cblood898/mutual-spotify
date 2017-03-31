@@ -7,13 +7,15 @@ import CPMergedPlaylist from './CPMergedPlaylist';
 
 class ConsensualPlaylist extends React.Component {
   render() {
-    let { title = '', description = '', playlists = '', _id = '' } = this.props.cplist || {};
-    let { user = {} } = this.props;
+    const { title = '', description = '', playlists = '', _id = '', spotifyData = {} } = this.props.cplist || {};
+    const { url = ''} = spotifyData;
+    const { user = {} } = this.props;
     const isAdmin = user.role === 'admin';
     return (
       <div>
         <h3>{isAdmin && <span>Admin - </span>}{title}</h3>
         <p>{description}</p>
+        <a href={url} className="btn" target="_blank">Launch Playlist</a>
         {user._id ?
           <div className="row">
             <div className="col s12 m4">
