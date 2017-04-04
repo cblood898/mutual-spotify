@@ -36,7 +36,7 @@ class SpotifyPlaylists extends React.Component {
     });
 
     return (
-      <div>
+      <div className="flexChild scroll padded">
         {playlistItems.length > 0 ?
           <div className="cols s12 m6">
             <div className="collection">

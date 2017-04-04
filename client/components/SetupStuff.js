@@ -8,7 +8,7 @@ class SetupStuff extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="flexChild columnParent">
         {this.props.children}
       </div>
     );

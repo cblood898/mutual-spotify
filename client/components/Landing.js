@@ -9,7 +9,7 @@ class Landing extends React.Component {
     let { user } = this.props;
     const isAdmin = user.role === 'admin';
     return (
-      <div>
+      <div className="container">
         {isAdmin ?
           <div>
             <CPForm />

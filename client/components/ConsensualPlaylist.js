@@ -12,19 +12,30 @@ class ConsensualPlaylist extends React.Component {
     const { user = {} } = this.props;
     const isAdmin = user.role === 'admin';
     return (
-      <div>
-        <h3>{isAdmin && <span>Admin - </span>}{title}</h3>
-        <p>{description}</p>
-        <a href={url} className="btn" target="_blank">Launch Playlist</a>
+      <div className="flexChild columnParent">
+        <div className="flexChild shrink rowParent">
+          <h3 className="flexChild">
+            {isAdmin && <span>Admin - </span>}{title}
+          </h3>
+          <div className="flexChild shrink columnParent flexCenter">
+            <a href={url} className="btn" target="_blank">Launch Playlist</a>
+          </div>
+        </div>
+        <div className="flexChild shrink">
+          <p>{description}</p>
+        </div>
         {user._id ?
-          <div className="row">
-            <div className="col s12 m4">
+          <div className="rowParent flexChild">
+            <div className="flexChild columnParent">
+              <h5 className="flexChild shrink padded">Playlists from Spotify</h5>
               <SpotifyPlaylists cpId={_id} />
             </div>
-            <div className="col s12 m4">
+            <div className="flexChild columnParent">
+              <h5 className="flexChild shrink padded">Playlists Added</h5>
               <CPPlaylists cplist={this.props.cplist} />
             </div>
-            <div className="col s12 m4">
+            <div className="flexChild columnParent">
+              <h5 className="flexChild shrink padded">Merged Playlist</h5>
               <CPMergedPlaylist cplist={this.props.cplist} />
             </div>
           </div>

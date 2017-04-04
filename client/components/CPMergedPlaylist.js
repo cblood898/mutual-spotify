@@ -45,7 +45,7 @@ class CPMergedPlaylist extends React.Component{
       return [];
     }
     return (
-      <div>
+      <div className="flexChild scroll padded">
         <form
           onSubmit={ e => {
             e.preventDefault();

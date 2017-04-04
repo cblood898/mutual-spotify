@@ -22,7 +22,7 @@ class Auth extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h2 className="center">{this.props.route.title}</h2>
           <form onSubmit={this.handleSubmit}>
             <input type="email" required={true} ref={ n => this.email = n } placeholder="email" autoFocus={focus}/>

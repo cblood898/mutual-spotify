@@ -60,8 +60,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <nav>
+      <div className="columnParent fullHeight">
+        <nav className="flexChild shrink">
           <div className="nav-wrapper">
             <a href="/" className="brand-logo"><img src="/images/logo-wh.svg" alt="Jamify" /></a>
             <a href="/" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></a>
@@ -75,8 +75,8 @@ class App extends React.Component {
             </ul>
           </div>
         </nav>
-        <Flash />
-        <div className="container">
+        <Flash className="flexChild shrink" />
+        <div className="flexChild columnParent padded">
           {this.props.children}
         </div>
       </div>

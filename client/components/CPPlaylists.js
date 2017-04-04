@@ -13,7 +13,7 @@ class CPPlaylists extends React.Component{
     });
 
     return (
-      <div>
+      <div className="flexChild scroll padded">
         {cplists}
       </div>
     )
