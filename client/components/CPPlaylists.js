@@ -8,7 +8,7 @@ class CPPlaylists extends React.Component{
     const { playlists = [] } = this.props.cplist;
     const cplists = playlists.map( (playlist, index) => {
       return (
-        <CPPlaylist playlist={playlist} key={index} />
+        <CPPlaylist playlist={playlist} key={index} cplistId={this.props.cplist._id} />
       )
     });
 

@@ -1,4 +1,6 @@
 import React from 'react';
+import { deleteCPPlaylist } from '../actions/spotify';
+import { connect } from 'react-redux';
 
 class CPPlaylist extends React.Component {
   state = { collapsed: true };
@@ -28,11 +30,19 @@ class CPPlaylist extends React.Component {
       <div className="collection">
         <div className="collection-item">
           {playlist.username} - {playlist.playlist_name}
-          <a onClick={this.toggleCollapse} className="secondary-content pointy">
+          <span onClick={this.toggleCollapse} className="secondary-content pointy">
             <i className="material-icons">
               list
             </i>
-          </a>
+          </span>
+          {/* <span onClick={() => {
+            this.props.dispatch(deleteCPPlaylist(this.props.cplistId, playlist.id))
+          }}
+           className="secondary-content pointy">
+              <i className="material-icons">
+                delete
+              </i>
+          </span> */}
         </div>
         {!this.state.collapsed && ptracks}
       </div>
@@ -40,4 +50,4 @@ class CPPlaylist extends React.Component {
   }
 };
 
-export default CPPlaylist;
+export default connect()(CPPlaylist);

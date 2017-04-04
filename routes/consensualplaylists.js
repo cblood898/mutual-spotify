@@ -62,7 +62,9 @@ router.post('/:id/add_tracks', (req, res) => {
     '_id': req.params.id
   };
   const tracks = JSON.parse(req.body.tracks);
+  const ts = new Date();
   const update = {
+    id: ts,
     username: req.body.user_id,
     playlist_name: req.body.playlist_name,
     cplist_id: req.params.id,
@@ -71,6 +73,25 @@ router.post('/:id/add_tracks', (req, res) => {
   ConsensualPlaylist.findOneAndUpdate(query, {
     $push: {
       playlists: update
+    }
+  }, {
+    safe: true,
+    upsert: true,
+    new: true
+  }, (err, tracks) => {
+    if (err)
+      console.log('error adding tracks', err);
+    res.json(tracks)
+  });
+})
+
+router.post('/:id/delete_tracks/:pid', (req, res) => {
+  const query = {
+    '_id': req.params.id
+  };
+  ConsensualPlaylist.findOneAndUpdate(query, {
+    $pull: {
+      playlists: {$elemMatch: { id: req.params.pid }}
     }
   }, {
     safe: true,
