@@ -4,6 +4,7 @@ import SpotifyPlaylists from './SpotifyPlaylists';
 import SignUp from './SignUp';
 import CPPlaylists from './CPPlaylists';
 import CPMergedPlaylist from './CPMergedPlaylist';
+import {postTracksToSpotify} from '../actions/spotify';
 
 class ConsensualPlaylist extends React.Component {
   render() {
@@ -14,9 +15,10 @@ class ConsensualPlaylist extends React.Component {
     return (
       <div className="flexChild columnParent">
         <div className="flexChild shrink rowParent">
-          <h3 className="flexChild">
-            {isAdmin && <span>Admin - </span>}{title}
-          </h3>
+          <h4 className="flexChild">
+            {/* {isAdmin && <span>Admin - </span>}{title} */}
+            {title}
+          </h4>
           <div className="flexChild shrink columnParent flexCenter">
             <a href={url} className="btn" target="_blank">Launch Playlist</a>
           </div>
@@ -26,16 +28,26 @@ class ConsensualPlaylist extends React.Component {
         </div>
         {user._id ?
           <div className="rowParent flexChild">
-            <div className="flexChild columnParent">
-              <h5 className="flexChild shrink padded">Playlists from Spotify</h5>
+            <div className="flexChild columnParent withListHeader">
+              <div className="flexChild shrink listHeader">Playlists from Spotify</div>
               <SpotifyPlaylists cpId={_id} />
             </div>
-            <div className="flexChild columnParent">
-              <h5 className="flexChild shrink padded">Playlists Added</h5>
+            <div className="flexChild columnParent withListHeader collapsing">
+              <div className="flexChild shrink listHeader">Playlists Added</div>
               <CPPlaylists cplist={this.props.cplist} />
             </div>
-            <div className="flexChild columnParent">
-              <h5 className="flexChild shrink padded">Merged Playlist</h5>
+            <div className="flexChild columnParent withListHeader">
+              <div className="flexChild shrink listHeader">Merged Playlist</div>
+              <div className="flexChild shrink padded">
+                <form
+                  onSubmit={ e => {
+                    e.preventDefault();
+                    this.props.dispatch(postTracksToSpotify( user, this.props.cplist, sendTracks() ));
+                  }}
+                >
+                  <button className="btn expand" type="submit">Add Tracks to Spotify</button>
+                </form>
+              </div>
               <CPMergedPlaylist cplist={this.props.cplist} />
             </div>
           </div>

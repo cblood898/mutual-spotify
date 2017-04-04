@@ -18,7 +18,7 @@ class CPList extends React.Component {
               this.props.dispatch(deleteCPlist(cplist._id))
             }}
             className="secondary-content pointy"
-          ><i className="material-icons">delete</i></a>
+          ><i className="material-icons red-text">delete</i></a>
         </li>
       )
     })

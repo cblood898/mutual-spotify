@@ -18,7 +18,7 @@ class CPPlaylist extends React.Component {
     const { playlist } = this.props;
     const ptracks = playlist.tracks.map((track, i) => {
       return (
-        <div key={i} className="collection-item avatar">
+        <div key={i} className="collection-item avatar audioPreview">
           <img src={track.image} alt="" className="circle"/>
           <span className="title">{track.name}</span>
           <p className="metadata">{track.artists}</p>
@@ -39,7 +39,7 @@ class CPPlaylist extends React.Component {
             this.props.dispatch(deleteCPPlaylist(this.props.cplistId, playlist))
           }}
            className="secondary-content pointy">
-              <i className="material-icons">
+              <i className="material-icons red-text">
                 delete
               </i>
           </span>
