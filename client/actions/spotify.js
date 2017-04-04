@@ -44,8 +44,9 @@ export const getPlaylistTracks = (user_id, playlist_id, playlist_name, access_to
         url: `/api/cplists/${cpId}/add_tracks`,
         type: 'POST',
         data: data,
+      }).done( cplist => {
+        return dispatch({ type: 'UPDATE_CPLIST', cplist })
       })
-      dispatch({ type: 'TRACKS', tracks })
     });
   }
 }

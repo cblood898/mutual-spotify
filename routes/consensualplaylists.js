@@ -74,7 +74,8 @@ router.post('/:id/add_tracks', (req, res) => {
     }
   }, {
     safe: true,
-    upsert: true
+    upsert: true,
+    new: true
   }, (err, tracks) => {
     if (err)
       console.log('error adding tracks', err);
@@ -92,7 +93,7 @@ router.put('/:id/add_uris', (req, res) => {
   }, {
     safe: true,
     upsert: true,
-    new: true 
+    new: true
   }, (err, playlist) => {
     console.log(playlist)
     if (err)
