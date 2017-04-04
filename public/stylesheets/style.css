@@ -39,7 +39,7 @@ a {
 
 /*MATERIALIZE OVERRIDES*/
 body {
-  color: rgb(41, 170, 226); !important;
+  color: rgb(41, 170, 226) !important;
 }
 
 nav {
@@ -60,6 +60,7 @@ textarea:focus, input:focus {
 
 .collection-item {
   background-color: rgba(0,0,0,0.3) !important;
+  color: #00B7FF !important;
 }
 
 .btn {
