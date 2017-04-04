@@ -11,6 +11,7 @@ class CPForm extends React.Component {
     let form;
     return (
       <div>
+        <a className="btn" href="/spotify/login">Sign in to Spotify</a>
         <form
           ref={ n => form = n }
           onSubmit={ e => {
