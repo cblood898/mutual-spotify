@@ -45,8 +45,8 @@ class SpotifyPlaylists extends React.Component {
           </div>
         :
           <div>
-            <a className="btn" href="/spotify/login">Get Spotify Playlists</a>
-            No playlists
+            <a className="btn expand" href="/spotify/login">Get Spotify Playlists</a>
+            <h6 className="center">No playlists</h6>
           </div>
         }
       </div>
