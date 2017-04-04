@@ -51,16 +51,19 @@ export const getPlaylistTracks = (user_id, playlist_id, playlist_name, access_to
   }
 }
 
-export const deleteCPPlaylist = (cplistid, pid) => {
+export const deleteCPPlaylist = (cplistId, playlist) => {
   return (dispatch) => {
+    const body = { playlist: JSON.stringify(playlist) }
     $.ajax({
-      url: `/api/cplists/${cplistid}/delete_tracks/${pid}`,
+      url: `/api/cplists/${cplistId}/delete_tracks`,
       type: 'POST',
+      data: body,
     }).done( (cplist) => {
       dispatch( {type: 'UPDATE_CPLIST', cplist })
     })
   }
 }
+
 export const postTracksToSpotify = ( user, cplist, uris ) => {
   return (dispatch) => {
     const playlist_id = cplist.spotifyData.id;

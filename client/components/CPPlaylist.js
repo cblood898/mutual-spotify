@@ -35,14 +35,14 @@ class CPPlaylist extends React.Component {
               list
             </i>
           </span>
-          {/* <span onClick={() => {
-            this.props.dispatch(deleteCPPlaylist(this.props.cplistId, playlist.id))
+          <span onClick={() => {
+            this.props.dispatch(deleteCPPlaylist(this.props.cplistId, playlist))
           }}
            className="secondary-content pointy">
               <i className="material-icons">
                 delete
               </i>
-          </span> */}
+          </span>
         </div>
         {!this.state.collapsed && ptracks}
       </div>
