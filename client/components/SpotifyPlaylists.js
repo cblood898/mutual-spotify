@@ -23,11 +23,15 @@ class SpotifyPlaylists extends React.Component {
     .map(playlist => {
       let { id, name } = playlist;
       return (
-        <a
-          key={id}
-          className="collection-item"
-          onClick={() => this.props.dispatch(getPlaylistTracks(user.spotify_auth.username, id, name, access_token, this.props.cpId))}
-        >{name}</a>
+        <a key={id} className="collection-item">
+          {name}
+          <span className="secondary-content">
+            <i
+              className="material-icons pointy"
+              onClick={() => this.props.dispatch(getPlaylistTracks(user.spotify_auth.username, id, name, access_token, this.props.cpId))}
+            >library_add</i>
+          </span>
+        </a>
       )
     });
 
