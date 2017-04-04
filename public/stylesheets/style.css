@@ -100,7 +100,7 @@ nav {
 }
 
 body {
-  background-color: #424242 !important;
+  background: #424242 url(/images/bg.jpg) no-repeat 100% 100%/100% !important;
 }
 
 input, select, textarea {
