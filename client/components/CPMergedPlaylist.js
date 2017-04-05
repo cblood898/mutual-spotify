@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {postTracksToSpotify} from '../actions/spotify';
 
 class CPMergedPlaylist extends React.Component{
   render() {
@@ -45,8 +46,20 @@ class CPMergedPlaylist extends React.Component{
       return [];
     }
     return (
-      <div className="flexChild scroll padded">
-        <div className="collection">{tracks()}</div>
+      <div className="flexChild columnParent padded">
+        <div className="flexChild shrink">
+          <form
+            onSubmit={ e => {
+              e.preventDefault();
+              this.props.dispatch(postTracksToSpotify( user, this.props.cplist, sendTracks() ));
+            }}
+          >
+            <button className="btn expand" type="submit">Add Tracks to Spotify</button>
+          </form>
+        </div>
+        <div className="flexChild scroll">
+          <div className="collection">{tracks()}</div>
+        </div>
       </div>
     )
   }

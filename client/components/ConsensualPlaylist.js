@@ -4,7 +4,6 @@ import SpotifyPlaylists from './SpotifyPlaylists';
 import SignUp from './SignUp';
 import CPPlaylists from './CPPlaylists';
 import CPMergedPlaylist from './CPMergedPlaylist';
-import {postTracksToSpotify} from '../actions/spotify';
 
 class ConsensualPlaylist extends React.Component {
   render() {
@@ -38,16 +37,6 @@ class ConsensualPlaylist extends React.Component {
             </div>
             <div className="flexChild columnParent withListHeader">
               <div className="flexChild shrink listHeader">Merged Playlist</div>
-              <div className="flexChild shrink padded">
-                <form
-                  onSubmit={ e => {
-                    e.preventDefault();
-                    this.props.dispatch(postTracksToSpotify( user, this.props.cplist, sendTracks() ));
-                  }}
-                >
-                  <button className="btn expand" type="submit">Add Tracks to Spotify</button>
-                </form>
-              </div>
               <CPMergedPlaylist cplist={this.props.cplist} />
             </div>
           </div>

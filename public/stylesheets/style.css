@@ -1,7 +1,7 @@
-a {
+a, .side-nav a {
   color: #29aae2 !important;
 }
-nav a, .btn {
+nav a, .btn, nav i.material-icons {
   color: white !important;
 }
 
